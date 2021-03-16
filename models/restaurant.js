@@ -1,6 +1,6 @@
 const mongoose = require('mongoose')
 const Schema = mongoose.Schema
-const restaurantSchema = new ({
+const restaurantSchema = new Schema({
   name: {
     type: String,
     require: true
@@ -22,7 +22,7 @@ const restaurantSchema = new ({
   phone: {
     type: String
   },
-  google_map: {
+  googleMap: {
     type: String
   },
   rating: {

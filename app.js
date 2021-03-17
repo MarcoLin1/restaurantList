@@ -5,6 +5,7 @@ const exhbs = require('express-handlebars')
 const mongoose = require('mongoose')
 const db = mongoose.connection
 const Restaurant = require('./models/restaurant')
+const bodyParser = require('body-parser')
 
 mongoose.connect('mongodb://localhost/restaurantList', { useNewUrlParser: true, useUnifiedTopology: true })
 db.on('error', () => {
@@ -20,11 +21,33 @@ app.engine('hbs', exhbs({ defaultLayout: 'main', extname: '.hbs' }))
 app.set('view engine', 'hbs')
 
 app.use(express.static('public'))
+app.use(bodyParser.urlencoded({ extended: true }))
 
 app.get('/', (req, res) => {
   Restaurant.find()
     .lean()
     .then(restaurants => res.render('index', { restaurants: restaurants }))
+    .catch(error => console.log(error))
+})
+
+app.get('/restaurant/new', (req, res) => {
+  return res.render('new')
+})
+
+app.post('/restaurant', (req, res) => {
+  let { name, name_en, category, image, location, phone, googleMap, rating, description } = req.body
+  return Restaurant.create({
+    name: name,
+    name_en: name_en,
+    category: category,
+    image: image,
+    location: location,
+    phone: phone,
+    google_map: googleMap,
+    rating: rating,
+    description: description
+  })
+    .then(() => res.redirect('/'))
     .catch(error => console.log(error))
 })
 

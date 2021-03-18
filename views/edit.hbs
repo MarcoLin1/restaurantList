@@ -1,0 +1,80 @@
+<div class="container new_container">
+  <form action="/restaurant/{{restaurant._id}}/edit" method="POST">
+    <div class="form-group row">
+      <label for="name">餐廳名稱</label>
+      <input type="text" name="name" id="name" class="form-control" placeholder="請輸入餐廳名稱" value="{{restaurant.name}}">
+    </div>
+
+    <div class="form-group row">
+      <label for="name_en">餐廳名稱(英文)</label>
+      <input type="text" name="name_en" id="name_en" class="form-control" placeholder="請輸入餐廳英文名稱"
+        value="{{restaurant.name_en}}">
+    </div>
+
+    <div class="form-group row">
+      <label for="category">類型</label>
+      <input list="categories" class="form-control" id="category" name="category" placeholder="請選擇類型或自行輸入"
+        value="{{restaurant.category}}">
+      <datalist id="categories">
+        <option>中式</option>
+        <option>美式</option>
+        <option>泰式</option>
+        <option>日本料理</option>
+        <option>韓式料理</option>
+        <option>中東料理</option>
+        <option>咖啡</option>
+      </datalist>
+    </div>
+
+    <div class="form-group row">
+      <label for="image">照片</label>
+      <input type="text" name="image" id="image" class="form-control" placeholder="請輸入餐廳照片連結"
+        value="{{restaurant.image}}">
+    </div>
+
+    <div class="form-group row">
+      <label for="location">地址</label>
+      <input type="text" name="location" id="location" class="form-control" placeholder="請輸入地址"
+        value="{{restaurant.location}}">
+    </div>
+
+    <div class="form-group row">
+      <label for="googleMap">Google Map</label>
+      <input type="text" name="googleMap" id="googleMap" class="form-control" placeholder="請輸入餐廳google map連結"
+        value="{{restaurant.googleMap}}">
+    </div>
+
+    <div class="form-group row">
+      <label for="phone">電話</label>
+      <input type="text" name="phone" id="phone" class="form-control" placeholder="請輸入餐廳電話"
+        value="{{restaurant.phone}}">
+    </div>
+
+    <div class="form-group row">
+      <label for="rating">評價</label>
+      <select name="rating" id="rating" class="form-control">
+        <option value="1">1顆星</option>
+        <option value="2">2顆星</option>
+        <option value="3">3顆星</option>
+        <option value="4">4顆星</option>
+        <option value="5">5顆星</option>
+      </select>
+    </div>
+
+    <div class="form-group row">
+      <label for="description">餐廳簡介</label>
+      <textarea name="description" id="description" cols="60" rows="8" class="form-control"
+        placeholder="請輸入餐廳簡介">{{restaurant.description}}</textarea>
+    </div>
+
+    <div class="d-flex justify-content-center">
+      <button type="submit" id="submit-btn" class="btn btn-info mt-3 mr-3" onclick="saving()">Save</button>
+      <button type="submit" id="submit-btn" class="btn btn-success mt-3">Back</button>
+    </div>
+  </form>
+</div>
+<script>
+  function saving() {
+    return alert('You save successfully!')
+  }
+</script>

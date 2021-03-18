@@ -7,6 +7,7 @@ const db = mongoose.connection
 const Restaurant = require('./models/restaurant')
 const bodyParser = require('body-parser')
 
+
 mongoose.connect('mongodb://localhost/restaurantList', { useNewUrlParser: true, useUnifiedTopology: true })
 db.on('error', () => {
   console.log('mongodb error')
@@ -35,7 +36,7 @@ app.get('/restaurant/new', (req, res) => {
 })
 
 app.post('/restaurant', (req, res) => {
-  let { name, name_en, category, image, location, phone, googleMap, rating, descriptions } = req.body
+  let { name, name_en, category, image, location, phone, googleMap, rating, description } = req.body
   return Restaurant.create({
     name: name,
     name_en: name_en,
@@ -45,7 +46,7 @@ app.post('/restaurant', (req, res) => {
     phone: phone,
     googleMap: googleMap,
     rating: rating,
-    descriptions: descriptions
+    description: description
   })
     .then(() => res.redirect('/'))
     .catch(error => console.log(error))
@@ -55,6 +56,32 @@ app.get('/restaurant/:id', (req, res) => {
   return Restaurant.findById(req.params.id)
     .lean()
     .then((restaurant) => res.render('detail', { restaurant: restaurant }))
+    .catch(error => console.log(error))
+})
+
+app.get('/restaurant/:id/edit', (req, res) => {
+  return Restaurant.findById(req.params.id)
+    .lean()
+    .then((restaurant) => res.render('edit', { restaurant: restaurant }))
+    .catch(error => console.log(error))
+})
+
+app.post('/restaurant/:id/edit', (req, res) => {
+  let restautants = req.body
+  return Restaurant.findById(req.params.id)
+    .then(restaurant => {
+      restaurant.name = restautants.name
+      restaurant.name_en = restautants.name_en
+      restaurant.category = restautants.category
+      restaurant.image = restautants.image
+      restaurant.location = restautants.location
+      restaurant.phone = restautants.phone
+      restaurant.googleMap = restautants.googleMap
+      restaurant.rating = restautants.rating
+      restaurant.description = restautants.description
+      return restaurant.save()
+    })
+    .then(() => res.redirect(`/restaurant/${req.params.id}`))
     .catch(error => console.log(error))
 })
 

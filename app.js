@@ -85,6 +85,13 @@ app.post('/restaurant/:id/edit', (req, res) => {
     .catch(error => console.log(error))
 })
 
+app.post('/restaurant/:id/delete', (req, res) => {
+  return Restaurant.findById(req.params.id)
+    .then(restaurant => restaurant.remove())
+    .then(() => res.redirect('/'))
+    .catch(error => console.log(error))
+})
+
 
 app.listen(port, () => {
   console.log(`Server is running on http://localhost:${port}`)

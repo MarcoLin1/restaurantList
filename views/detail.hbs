@@ -3,6 +3,9 @@
   <form action="/restaurant/{{restaurant._id}}/edit" method="GET" class="mt-2">
     <button class="btn btn-warning mr-1">Edit</button>
   </form>
+  <form action="/restaurant/{{restaurant._id}}/delete" method="post" class="mt-2">
+    <button type="submit" class="btn btn-danger" onclick="removing()">Delete</button>
+  </form>
 </div>
 
 <div class="container">
@@ -45,3 +48,14 @@
     </div>
   </div>
 </div>
+
+<script>
+  function removing() {
+    var yes = confirm('Do you want to delete it ?');
+    if (yes) {
+      return true
+    } else {
+      return false
+    }
+  }
+</script>

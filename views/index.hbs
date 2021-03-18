@@ -48,8 +48,8 @@
                 <form action="./restaurant/{{this._id}}/edit" method="GET" class="mt-2">
                   <button class="btn btn-warning btn-sm mr-1">Edit</button>
                 </form>
-                <form action="./restaurant/{{this._id}}/delete" method="GET" class="mt-2">
-                  <button class="btn btn-danger btn-sm mr-1">Delete</button>
+                <form action="./restaurant/{{this._id}}/delete" method="POST" class="mt-2">
+                  <button class="btn btn-danger btn-sm mr-1" onclick="removing()">Delete</button>
                 </form>
               </div>
             </div>
@@ -61,3 +61,14 @@
     </div>
   </div>
 </div>
+
+<script>
+  function removing() {
+    var yes = confirm('Do you want to delete it ?');
+    if (yes) {
+      return true
+    } else {
+      return false
+    }
+  }
+</script>

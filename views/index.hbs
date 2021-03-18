@@ -41,7 +41,17 @@
                 {{this.rating}}
                 <i class="fas fa-star fa-xs"></i>
               </span>
-
+              <div class="container d-flex justify-content-end">
+                <form action="./restaurant/{{this._id}}" method="GET" class="mt-2">
+                  <button class="btn btn-info btn-sm mr-1">Detail</button>
+                </form>
+                <form action="./restaurant/{{this._id}}/edit" method="GET" class="mt-2">
+                  <button class="btn btn-warning btn-sm mr-1">Edit</button>
+                </form>
+                <form action="./restaurant/{{this._id}}/delete" method="GET" class="mt-2">
+                  <button class="btn btn-danger btn-sm mr-1">Delete</button>
+                </form>
+              </div>
             </div>
           </div>
         </a>

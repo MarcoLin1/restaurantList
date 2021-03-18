@@ -35,7 +35,7 @@ app.get('/restaurant/new', (req, res) => {
 })
 
 app.post('/restaurant', (req, res) => {
-  let { name, name_en, category, image, location, phone, googleMap, rating, description } = req.body
+  let { name, name_en, category, image, location, phone, googleMap, rating, descriptions } = req.body
   return Restaurant.create({
     name: name,
     name_en: name_en,
@@ -43,13 +43,21 @@ app.post('/restaurant', (req, res) => {
     image: image,
     location: location,
     phone: phone,
-    google_map: googleMap,
+    googleMap: googleMap,
     rating: rating,
-    description: description
+    descriptions: descriptions
   })
     .then(() => res.redirect('/'))
     .catch(error => console.log(error))
 })
+
+app.get('/restaurant/:id', (req, res) => {
+  return Restaurant.findById(req.params.id)
+    .lean()
+    .then((restaurant) => res.render('detail', { restaurant: restaurant }))
+    .catch(error => console.log(error))
+})
+
 
 app.listen(port, () => {
   console.log(`Server is running on http://localhost:${port}`)

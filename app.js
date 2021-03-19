@@ -27,7 +27,7 @@ app.use(bodyParser.urlencoded({ extended: true }))
 app.get('/', (req, res) => {
   Restaurant.find()
     .lean()
-    .then(restaurants => res.render('index', { restaurants: restaurants }))
+    .then(restaurants => res.render('index', { restaurant: restaurants }))
     .catch(error => console.log(error))
 })
 
@@ -59,6 +59,7 @@ app.get('/restaurant/:id', (req, res) => {
     .catch(error => console.log(error))
 })
 
+
 app.get('/restaurant/:id/edit', (req, res) => {
   return Restaurant.findById(req.params.id)
     .lean()
@@ -89,6 +90,19 @@ app.post('/restaurant/:id/delete', (req, res) => {
   return Restaurant.findById(req.params.id)
     .then(restaurant => restaurant.remove())
     .then(() => res.redirect('/'))
+    .catch(error => console.log(error))
+})
+
+app.get('/search', (req, res) => {
+  let keyword = req.query.keyword
+  Restaurant.find({
+    '$or': [
+      { name: { $regex: keyword, $options: 'si' } },
+      { category: { $regex: keyword, $options: 'si' } }
+    ]
+  })
+    .lean()
+    .then(restaurant => res.render('index', { restaurant: restaurant }))
     .catch(error => console.log(error))
 })
 

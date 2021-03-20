@@ -1,10 +1,12 @@
 <h1 class="mt-3 mb-3 restaurant-show-title">{{restaurant.name}}</h1>
 <div class="container d-flex justify-content-end">
   <form action="/restaurant/{{restaurant._id}}/edit" method="GET" class="mt-2">
-    <button class="btn btn-warning mr-1">Edit</button>
+    <button class="btn mr-2 editBtn" style="border-radius: 25%; border:1px solid #f5f5f5; color:#aaaaaa"><i
+        class="fas fa-edit"></i></button>
   </form>
   <form action="/restaurant/{{restaurant._id}}/delete" method="post" class="mt-2">
-    <button type="submit" class="btn btn-danger" onclick="removing()">Delete</button>
+    <button type="submit" class="btn deleteBtn" onclick="removing()"
+      style="border-radius: 25%; border:1px solid #f5f5f5; color:#aaaaaa"><i class="fas fa-trash-alt ml-1"></i></button>
   </form>
 </div>
 
@@ -12,7 +14,7 @@
   <div class="row">
     <div class="col-12 col-md-10 mx-auto">
 
-      <p class="mb-1">
+      <p class="mb-2">
         <span class="text-secondary">
           <i class="fas fa-utensils pr-2"></i>
           類別：
@@ -20,7 +22,7 @@
         {{restaurant.category}}
       </p>
 
-      <p class="mb-1">
+      <p class="mb-2">
         <span class="text-secondary">
           <i class="fas fa-map-marker-alt pr-2"></i>
           地址：
@@ -31,7 +33,7 @@
         </a>
       </p>
 
-      <p class="mb-1">
+      <p class="mb-2">
         <span class="text-secondary">
           <i class="fas fa-mobile-alt pr-2"></i>
           電話：
@@ -39,12 +41,18 @@
         {{restaurant.phone}}
       </p>
 
-      <p class="mb-5">
+      <p class="mb-5" style="line-height: 30px;">
         {{restaurant.description}}
       </p>
 
-      <img class="rounded mx-auto d-block mb-4 w-100" src="{{restaurant.image}}" alt="{{restaurant.name}}"
-        style="max-width: 600px;">
+      <div class="row d-flex" style="flex-wrap: nowrap;">
+        <img class="rounded mx-auto mb-4 col-12" src="{{restaurant.image}}" alt="{{restaurant.name}}"
+          style="max-width: 600px; border:0;">
+        <div class="col-3">
+          <iframe src="{{restaurant.googleMap}}" width="200" height="200" style="border:0;" allowfullscreen=""
+            loading="lazy"></iframe>
+        </div>
+      </div>
     </div>
   </div>
 </div>

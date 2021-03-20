@@ -7,7 +7,7 @@ const db = mongoose.connection
 const Restaurant = require('./models/restaurant')
 const bodyParser = require('body-parser')
 
-
+// setting mongodb
 mongoose.connect('mongodb://localhost/restaurantList', { useNewUrlParser: true, useUnifiedTopology: true })
 db.on('error', () => {
   console.log('mongodb error')
@@ -17,13 +17,15 @@ db.once('open', () => {
   console.log('mongodb connected!')
 })
 
-
+// setting handlebars
 app.engine('hbs', exhbs({ defaultLayout: 'main', extname: '.hbs' }))
 app.set('view engine', 'hbs')
 
+// browse app will first load the files and setting 
 app.use(express.static('public'))
 app.use(bodyParser.urlencoded({ extended: true }))
 
+// show first page
 app.get('/', (req, res) => {
   Restaurant.find()
     .lean()
@@ -31,10 +33,12 @@ app.get('/', (req, res) => {
     .catch(error => console.log(error))
 })
 
+// show new restaurant form page
 app.get('/restaurant/new', (req, res) => {
   return res.render('new')
 })
 
+// complete add form, data will write to mongodb and redirect to first page 
 app.post('/restaurant', (req, res) => {
   let { name, name_en, category, image, location, phone, googleMap, rating, description } = req.body
   return Restaurant.create({
@@ -52,6 +56,7 @@ app.post('/restaurant', (req, res) => {
     .catch(error => console.log(error))
 })
 
+// show detail page
 app.get('/restaurant/:id', (req, res) => {
   return Restaurant.findById(req.params.id)
     .lean()
@@ -59,7 +64,7 @@ app.get('/restaurant/:id', (req, res) => {
     .catch(error => console.log(error))
 })
 
-
+// show edit page if you enter through the detail page
 app.get('/restaurant/:id/edit', (req, res) => {
   return Restaurant.findById(req.params.id)
     .lean()
@@ -67,6 +72,7 @@ app.get('/restaurant/:id/edit', (req, res) => {
     .catch(error => console.log(error))
 })
 
+// complete edit page, data will write to mongodb and redirect to detail page
 app.post('/restaurant/:id/edit', (req, res) => {
   let restautants = req.body
   return Restaurant.findById(req.params.id)
@@ -86,6 +92,7 @@ app.post('/restaurant/:id/edit', (req, res) => {
     .catch(error => console.log(error))
 })
 
+// click delete icon that will remove data from mongodb and redirect to first page
 app.post('/restaurant/:id/delete', (req, res) => {
   return Restaurant.findById(req.params.id)
     .then(restaurant => restaurant.remove())
@@ -93,6 +100,7 @@ app.post('/restaurant/:id/delete', (req, res) => {
     .catch(error => console.log(error))
 })
 
+// setting search condition and show the result  
 app.get('/search', (req, res) => {
   let keyword = req.query.keyword
   Restaurant.find({
@@ -106,7 +114,7 @@ app.get('/search', (req, res) => {
     .catch(error => console.log(error))
 })
 
-
+// listening the server
 app.listen(port, () => {
   console.log(`Server is running on http://localhost:${port}`)
 })

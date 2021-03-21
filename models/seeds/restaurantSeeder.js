@@ -19,10 +19,12 @@ db.once('open', () => {
       image: restaurantJson.results[i].image,
       location: restaurantJson.results[i].location,
       phone: restaurantJson.results[i].phone,
-      googleMap: restaurantJson.results[i].google_map,
+      google_map: restaurantJson.results[i].google_map,
+      googleMap: restaurantJson.results[i].googleMap,
       rating: restaurantJson.results[i].rating,
       description: restaurantJson.results[i].description
     })
   }
   console.log('completed')
 })
+

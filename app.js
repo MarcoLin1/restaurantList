@@ -83,7 +83,8 @@ app.post('/restaurant/:id/edit', (req, res) => {
       restaurant.image = restautants.image
       restaurant.location = restautants.location
       restaurant.phone = restautants.phone
-      restaurant.googleMap = restautants.googleMap
+      restaurant.googleMap = restaurant.googleMap
+      restaurant.google_map = restautants.googleMap
       restaurant.rating = restautants.rating
       restaurant.description = restautants.description
       return restaurant.save()

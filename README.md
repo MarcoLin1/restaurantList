@@ -20,34 +20,23 @@ git clone https://github.com/MarcoLin1/restaurantList.git
 ```
 cd restaurantList
 ```
-3. Install npm & Express
-```
-npm init -y
-npm install express
-```
+3. Install npm 
+
 4. Install nodemon
 ```
 npm install -g nodemon
 ```
-5. Install handlebars
-```
-npm install express-handlebars
-```
-6. Download [mongodb](https://www.mongodb.com/) and make folder to conncet with mongodb 
+5. Download [mongodb](https://www.mongodb.com/) and make folder to conncet with mongodb 
 ```
 mkdir mongodb-data
 cd ~/mongodb/bin
 $ ./mongod --dbpath /Users/[your username]/[mongodb-data's path]/mongodb-data
 ```
-7. Download [Robot 3T](https://robomongo.org/), install mongoose
-```
-npm intall mongoose
-```
-8. Create data in mongodb
+6. Create data in mongodb
 ```
 npm run seed
 ```
-9. Initiate server and execute the website
+7. Initiate server and execute the website
 ```
 npm run dev 
 ```

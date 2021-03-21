@@ -43,7 +43,11 @@ $ ./mongod --dbpath /Users/[your username]/[mongodb-data's path]/mongodb-data
 ```
 npm intall mongoose
 ```
-8. Initiate server and execute the website
+8. Create data in mongodb
+```
+npm run seed
+```
+9. Initiate server and execute the website
 ```
 npm run dev 
 ```

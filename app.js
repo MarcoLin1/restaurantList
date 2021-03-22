@@ -6,6 +6,7 @@ const mongoose = require('mongoose')
 const db = mongoose.connection
 const Restaurant = require('./models/restaurant')
 const bodyParser = require('body-parser')
+const methodOverride = require('method-override')
 
 // setting mongodb
 mongoose.connect('mongodb://localhost/restaurantList', { useNewUrlParser: true, useUnifiedTopology: true })
@@ -24,6 +25,9 @@ app.set('view engine', 'hbs')
 // browse app will first load the files and setting 
 app.use(express.static('public'))
 app.use(bodyParser.urlencoded({ extended: true }))
+
+// setting method-override
+app.use(methodOverride('_method'))
 
 // show first page
 app.get('/', (req, res) => {
@@ -73,7 +77,7 @@ app.get('/restaurant/:id/edit', (req, res) => {
 })
 
 // complete edit page, data will write to mongodb and redirect to detail page
-app.post('/restaurant/:id/edit', (req, res) => {
+app.put('/restaurant/:id', (req, res) => {
   let restautants = req.body
   return Restaurant.findById(req.params.id)
     .then(restaurant => {
@@ -94,7 +98,7 @@ app.post('/restaurant/:id/edit', (req, res) => {
 })
 
 // click delete icon that will remove data from mongodb and redirect to first page
-app.post('/restaurant/:id/delete', (req, res) => {
+app.delete('/restaurant/:id', (req, res) => {
   return Restaurant.findById(req.params.id)
     .then(restaurant => restaurant.remove())
     .then(() => res.redirect('/'))

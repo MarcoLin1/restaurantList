@@ -4,7 +4,7 @@
     <button class="btn mr-2 editBtn" style="border-radius: 25%; border:1px solid #f5f5f5; color:#aaaaaa"><i
         class="fas fa-edit"></i></button>
   </form>
-  <form action="/restaurant/{{restaurant._id}}/delete" method="post" class="mt-2">
+  <form action="/restaurant/{{restaurant._id}}?_method=DELETE" method="post" class="mt-2">
     <button type="submit" class="btn deleteBtn" onclick="removing()"
       style="border-radius: 25%; border:1px solid #f5f5f5; color:#aaaaaa"><i class="fas fa-trash-alt ml-1"></i></button>
   </form>

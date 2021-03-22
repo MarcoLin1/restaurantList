@@ -7,6 +7,10 @@ router.get('/new', (req, res) => {
   return res.render('new')
 })
 
+router.get('/restaurant/new', (req, res) => {
+  return res.render('new')
+})
+
 // complete add form, data will write to mongodb and redirect to first page 
 router.post('/', (req, res) => {
   let { name, name_en, category, image, location, phone, googleMap, rating, description } = req.body

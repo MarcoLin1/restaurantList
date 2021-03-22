@@ -2,24 +2,12 @@ const express = require('express')
 const app = express()
 const port = 3000
 const exhbs = require('express-handlebars')
-const mongoose = require('mongoose')
 const bodyParser = require('body-parser')
 
 const Restaurant = require('./models/restaurant')
 const methodOverride = require('method-override')
 const routes = require('./routes')
-
-// setting mongodb
-const db = mongoose.connection
-mongoose.connect('mongodb://localhost/restaurantList', { useNewUrlParser: true, useUnifiedTopology: true })
-
-db.on('error', () => {
-  console.log('mongodb error')
-})
-
-db.once('open', () => {
-  console.log('mongodb connected!')
-})
+require('./config/mongoose')
 
 // setting handlebars
 app.engine('hbs', exhbs({ defaultLayout: 'main', extname: '.hbs' }))

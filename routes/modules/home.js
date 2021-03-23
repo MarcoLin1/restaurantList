@@ -7,8 +7,7 @@ router.get('/', (req, res) => {
   Restaurant.find()
     .lean()
     .then(restaurants => res.render('index', { restaurant: restaurants }))
-    .catch(error => console.log(error))
+    .catch(error => res.render('error', { error: error }))
 })
-
 
 module.exports = router

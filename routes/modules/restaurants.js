@@ -26,7 +26,7 @@ router.post('/', (req, res) => {
     description: description
   })
     .then(() => res.redirect('/'))
-    .catch(error => console.log(error))
+    .catch(error => res.render('error', { error: error }))
 })
 
 // show detail page
@@ -34,7 +34,7 @@ router.get('/:id', (req, res) => {
   return Restaurant.findById(req.params.id)
     .lean()
     .then((restaurant) => res.render('detail', { restaurant: restaurant }))
-    .catch(error => console.log(error))
+    .catch(error => res.render('error', { error: error }))
 })
 
 // show edit page if you enter through the detail page
@@ -42,7 +42,7 @@ router.get('/:id/edit', (req, res) => {
   return Restaurant.findById(req.params.id)
     .lean()
     .then((restaurant) => res.render('edit', { restaurant: restaurant }))
-    .catch(error => console.log(error))
+    .catch(error => res.render('error', { error: error }))
 })
 
 // complete edit page, data will write to mongodb and redirect to detail page
@@ -63,7 +63,7 @@ router.put('/:id', (req, res) => {
       return restaurant.save()
     })
     .then(() => res.redirect(`/restaurant/${req.params.id}`))
-    .catch(error => console.log(error))
+    .catch(error => res.render('error', { error: error }))
 })
 
 // click delete icon that will remove data from mongodb and redirect to first page
@@ -71,7 +71,14 @@ router.delete('/:id', (req, res) => {
   return Restaurant.findById(req.params.id)
     .then(restaurant => restaurant.remove())
     .then(() => res.redirect('/'))
-    .catch(error => console.log(error))
+    .catch(error => res.render('error', { error: error }))
 })
+
+// // show error page
+// router.get('/error', (req, res) => {
+//   return Restaurant.findById(req.params.id)
+//     .lean()
+//     .catch(error => res.render('error', { error: error }))
+// })
 
 module.exports = router

@@ -9,7 +9,7 @@ router.get('/:type/:method', (req, res) => {
     .lean()
     .sort({ [type]: method })
     .then(restaurants => res.render('index', { restaurant: restaurants }))
-    .catch(error => console.log(error))
+    .catch(error => res.render('error', { error: error }))
 })
 
 module.exports = router

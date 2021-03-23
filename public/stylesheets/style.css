@@ -111,9 +111,10 @@ header {
 }
 
 .card-footer {
-  font-family: 'Akaya Telivigala', cursive;
-  font-size: larger;
-  color: #aaaaaa;
+  font-family: 'Berkshire Swash', cursive;
+  color:#074163;
+  font-size:large;
+  background-color: #dee2e6;;
   border-top: none;
 }
 
@@ -165,3 +166,10 @@ header {
   color: aliceblue;
 }
 
+.sortBtn:hover {
+  background-color: #dee2e6;
+}
+
+.dropdown-menu {
+  font-family: 'Berkshire Swash', cursive;
+}

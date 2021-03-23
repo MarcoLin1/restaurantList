@@ -1,6 +1,21 @@
 <!-- search bar -->
-<div class="container search-bar mt-5">
+<div class="container search-bar mt-3" style="display: inline;">
+  <div class="dropdown show" style="display: flex; justify-content:flex-end; margin-right:10px;">
+    <a class="btn sortBtn dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown"
+      aria-haspopup="true" aria-expanded="false" style="border-radius: 10%; border:1px solid #d6d4d4; color:#aaaaaa">
+      <i class="fas fa-filter"></i>
+    </a>
 
+    <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+      <a class="dropdown-item" href="/sort/name/asc">Name: <i class="fas fa-sort-amount-down-alt"></i></a>
+      <a class="dropdown-item" href="/sort/name/desc">Name: <i class="fas fa-sort-amount-down"></i></a>
+      <a class="dropdown-item" href="/sort/category/asc">Category: <i class="fas fa-sort-amount-down-alt"></i></a>
+      <a class="dropdown-item" href="/sort/category/desc">Category: <i class="fas fa-sort-amount-down"></i></a>
+      <a class="dropdown-item" href="/sort/rating/asc">Rating: <i class="fas fa-star-half-alt"></i></a>
+      <a class="dropdown-item" href="/sort/rating/desc">Rating: <i class="fas fa-star-half-alt"></i><i
+          class="fas fa-star-half-alt"></i></a>
+    </div>
+  </div>
   <div class="search-bar-outer">
     <div class="search-bar-inner">
       <form action="/search">
@@ -19,7 +34,7 @@
 </div>
 
 <!-- restaurant list -->
-<div class="container mt-5">
+<div class="container mt-3">
   <div class="row">
     <div class="col-md-10 col-12 mx-auto">
       <div class="card-columns">

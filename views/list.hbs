@@ -1,0 +1,79 @@
+<!-- search bar -->
+<div class="container search-bar mt-3" style="display: inline;">
+  <div class="dropdown show" style="display: flex; justify-content:flex-end; margin-right:10px;">
+    <a href="/" class="btn mr-2" role="button" style="border-radius: 10%; border:1px solid #d6d4d4; color:#aaaaaa">
+      <i class="fa fa-th fa-lg" aria-hidden="true"></i>
+    </a>
+    <a href="/list" class="mr-2 btn" role="button" style="border-radius: 10%; border:1px solid #d6d4d4; color:#aaaaaa">
+      <i class="fas fa-list fa-lg"></i>
+    </a>
+    <a class="btn sortBtn dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown"
+      aria-haspopup="true" aria-expanded="false" style="border-radius: 10%; border:1px solid #d6d4d4; color:#aaaaaa">
+      <i class="fas fa-filter"></i>
+    </a>
+    <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+      <a class="dropdown-item" href="/sort/list/name/asc">Name: <i class="fas fa-sort-amount-down-alt"></i></a>
+      <a class="dropdown-item" href="/sort/list/name/desc">Name: <i class="fas fa-sort-amount-down"></i></a>
+      <a class="dropdown-item" href="/sort/list/category/asc">Category: <i class="fas fa-sort-amount-down-alt"></i></a>
+      <a class="dropdown-item" href="/sort/list/category/desc">Category: <i class="fas fa-sort-amount-down"></i></a>
+      <a class="dropdown-item" href="/sort/list/rating/asc">Rating: <i class="fas fa-star-half-alt"></i></a>
+      <a class="dropdown-item" href="/sort/list/rating/desc">Rating: <i class="fas fa-star-half-alt"></i><i
+          class="fas fa-star-half-alt"></i></a>
+    </div>
+  </div>
+
+  <div class="search-bar-outer">
+    <div class="search-bar-inner">
+      <form action="/search">
+        <h4 class="mb-2 font-weight-bold" style="font-family: 'Berkshire Swash', cursive;">Search Restaurant</h4>
+        <div class="input-group">
+          <input type="text" name="keyword" class="form-control mt-1" placeholder="Enter your keywords"
+            aria-label="Restaurant Name..." value="{{keyword}}" aria-describedby="search-button"
+            style="border-radius: 2%;">
+          <div class="input-group-append">
+            <button class="btn" type="submit" id="search-button"><i class="fas fa-search"></i></button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="row">
+    <table class="table">
+      <thead>
+        <tr class="list">
+          <th class="headName">Name</th>
+          <th class="headCategory">Category</th>
+          <th class="headRating">Rating</th>
+          <th class="headAction">Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        {{#each restaurant}}
+        <tr>
+          <td class="name">{{this.name}}</td>
+          <td class="category">{{this.category}}</td>
+          <td class="rating">{{this.rating}}</td>
+          <td class="action d-flex justify-content-center">
+            <form action="/restaurant/{{this._id}}" method="GET">
+              <button class="btn btn-sm mr-1 infoBtn"
+                style="border-radius: 25%; border:1px solid #f5f5f5; color:#aaaaaa"><i class="fas fa-info"></i></button>
+            </form>
+            <form action="/restaurant/{{this._id}}/edit" method="GET">
+              <button class="btn btn-sm mr-1 editBtn"
+                style="border-radius: 25%; border:1px solid #f5f5f5; color:#aaaaaa"><i class="fas fa-edit"></i></button>
+            </form>
+            <form action="/restaurant/{{this._id}}?_method=DELETE" method="POST">
+              <button class="btn btn-sm mr-1 deleteBtn"
+                style="border-radius: 25%; border:1px solid #f5f5f5; color:#aaaaaa" onclick="removing()"><i
+                  class="fas fa-trash-alt"></i></button>
+            </form>
+          </td>
+        </tr>
+        {{/each}}
+      </tbody>
+    </table>
+  </div>
+</div>

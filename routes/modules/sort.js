@@ -12,4 +12,14 @@ router.get('/:type/:method', (req, res) => {
     .catch(error => res.render('error', { error: error }))
 })
 
+router.get('/list/:type/:method', (req, res) => {
+  const type = req.params.type
+  const method = req.params.method
+  Restaurant.find()
+    .lean()
+    .sort({ [type]: method })
+    .then(restaurants => res.render('list', { restaurant: restaurants }))
+    .catch(error => res.render('error', { error: error }))
+})
+
 module.exports = router

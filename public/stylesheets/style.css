@@ -173,3 +173,20 @@ header {
 .dropdown-menu {
   font-family: 'Berkshire Swash', cursive;
 }
+
+.detail {
+  display: flex;
+}
+
+.headName, .headCategory, .headRating, .headAction {
+    text-align-last: center;
+}
+
+.name, .category, .rating {
+  text-align-last: center;
+}
+
+.table td {
+  border-top: none;
+}
+

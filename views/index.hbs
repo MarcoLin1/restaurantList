@@ -1,11 +1,16 @@
 <!-- search bar -->
 <div class="container search-bar mt-3" style="display: inline;">
   <div class="dropdown show" style="display: flex; justify-content:flex-end; margin-right:10px;">
+    <a href="/" class="btn mr-2" role="button" style="border-radius: 10%; border:1px solid #d6d4d4; color:#aaaaaa">
+      <i class="fa fa-th fa-lg" aria-hidden="true"></i>
+    </a>
+    <a href="/list" class="mr-2 btn" role="button" style="border-radius: 10%; border:1px solid #d6d4d4; color:#aaaaaa">
+      <i class="fas fa-list fa-lg"></i>
+    </a>
     <a class="btn sortBtn dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown"
       aria-haspopup="true" aria-expanded="false" style="border-radius: 10%; border:1px solid #d6d4d4; color:#aaaaaa">
       <i class="fas fa-filter"></i>
     </a>
-
     <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
       <a class="dropdown-item" href="/sort/name/asc">Name: <i class="fas fa-sort-amount-down-alt"></i></a>
       <a class="dropdown-item" href="/sort/name/desc">Name: <i class="fas fa-sort-amount-down"></i></a>
@@ -16,6 +21,7 @@
           class="fas fa-star-half-alt"></i></a>
     </div>
   </div>
+
   <div class="search-bar-outer">
     <div class="search-bar-inner">
       <form action="/search">
@@ -55,17 +61,17 @@
                 <i class="fas fa-star fa-xs"></i>
               </span>
               <div class="container d-flex justify-content-end">
-                <form action="./restaurant/{{this._id}}" method="GET" class="mt-2">
+                <form action="/restaurant/{{this._id}}" method="GET" class="mt-2">
                   <button class="btn btn-sm mr-1 infoBtn"
                     style="border-radius: 25%; border:1px solid #f5f5f5; color:#aaaaaa"><i
                       class="fas fa-info"></i></button>
                 </form>
-                <form action="./restaurant/{{this._id}}/edit" method="GET" class="mt-2">
+                <form action="/restaurant/{{this._id}}/edit" method="GET" class="mt-2">
                   <button class="btn btn-sm mr-1 editBtn"
                     style="border-radius: 25%; border:1px solid #f5f5f5; color:#aaaaaa"><i
                       class="fas fa-edit"></i></button>
                 </form>
-                <form action="./restaurant/{{this._id}}?_method=DELETE" method="POST" class="mt-2">
+                <form action="/restaurant/{{this._id}}?_method=DELETE" method="POST" class="mt-2">
                   <button class="btn btn-sm mr-1 deleteBtn"
                     style="border-radius: 25%; border:1px solid #f5f5f5; color:#aaaaaa" onclick="removing()"><i
                       class="fas fa-trash-alt"></i></button>

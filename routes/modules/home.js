@@ -10,4 +10,12 @@ router.get('/', (req, res) => {
     .catch(error => res.render('error', { error: error }))
 })
 
+// show first page (list mode)
+router.get('/list', (req, res) => {
+  Restaurant.find()
+    .lean()
+    .then(restaurant => res.render('list', { restaurant: restaurant }))
+    .catch(error => res.render('error', { error: error }))
+})
+
 module.exports = router

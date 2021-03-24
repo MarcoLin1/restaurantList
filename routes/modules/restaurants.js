@@ -74,11 +74,4 @@ router.delete('/:id', (req, res) => {
     .catch(error => res.render('error', { error: error }))
 })
 
-// // show error page
-// router.get('/error', (req, res) => {
-//   return Restaurant.findById(req.params.id)
-//     .lean()
-//     .catch(error => res.render('error', { error: error }))
-// })
-
 module.exports = router

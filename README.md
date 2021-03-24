@@ -56,5 +56,10 @@ mongodb connected!
 * Mongoose: 5.12.0
 * Robot 3T: 1.4.3
 
-
-
+---
+# Update (2021/3/24)
+* Add method-override to fit Restful architectural style
+* Refactor express routes and mongoose config
+* Add filter function, such as rating, name and category
+* Add error massage page
+* Add new view mode by list

@@ -10,6 +10,7 @@ Simple website of restaurant established by Node.js and Express
 6. Click "Restautant plus+" can get back to first page
 
 ![image](https://github.com/MarcoLin1/restaurantList/blob/master/restaurantList_.png)
+![image](https://github.com/MarcoLin1/restaurantList/blob/master/restaurantList_update.png)
 
 # Installation
 1. Clone repository to your computer

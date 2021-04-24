@@ -4,6 +4,7 @@ const app = express()
 const port = 3000
 const exhbs = require('express-handlebars')
 const bodyParser = require('body-parser')
+const usePassport = require('./config/passport')
 
 const Restaurant = require('./models/restaurant')
 const methodOverride = require('method-override')
@@ -13,6 +14,9 @@ require('./config/mongoose')
 // setting handlebars
 app.engine('hbs', exhbs({ defaultLayout: 'main', extname: '.hbs' }))
 app.set('view engine', 'hbs')
+
+// call Passport function and setting before routes
+usePassport(app)
 
 // setting session 
 app.use(session({

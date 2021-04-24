@@ -30,11 +30,12 @@
         <span style="font-weight: bold; font-size:25px;">Restaurant plus+</span>
       </a>
       {{!-- add button --}}
-      <a href="./restaurant/new" class="d-flex justify-content-end" style="display: inline;">
-        <button class="btn addBtn"
-          style="background-color:#dee2e6c2; border:inherit; color:#666a6d; border-radius:25%;"><i
-            class="fas fa-plus-square"></i></button>
-      </a>
+      {{#if isAuthenticated}} 
+      <a href="/users/logout" class="btn btn-outline-primary">Logout</a>
+      {{else}}
+      <a href="/users/login" class="btn btn-outline-primary">Login</a>
+      {{/if}}
+
     </div>
   </nav>
 

@@ -19,7 +19,7 @@ module.exports = app => {
         }
         return done(null, user)
       })
-      .catch(error => console.log(error))
+      .catch(error => done(error, false))
   }))
 
   // 設定序列化&反序列化
@@ -30,6 +30,6 @@ module.exports = app => {
     User.findById(id)
       .lean()
       .then(user => done(null, user))
-      .catch(error => done(error, false))
+      .catch(error => done(error, null))
   })
 }

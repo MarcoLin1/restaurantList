@@ -30,6 +30,6 @@ module.exports = app => {
     User.findById(id)
       .lean()
       .then(user => done(null, user))
-      .catch(error => console.log(error, null))
+      .catch(error => done(error, false))
   })
 }

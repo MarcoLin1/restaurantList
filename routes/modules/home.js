@@ -4,7 +4,8 @@ const Restaurant = require('../../models/restaurant')
 
 // show first page
 router.get('/', (req, res) => {
-  Restaurant.find()
+  const userId = req.user._id
+  Restaurant.find({ userId })
     .lean()
     .then(restaurants => res.render('index', { restaurant: restaurants }))
     .catch(error => res.render('error', { error: error }))
@@ -12,7 +13,8 @@ router.get('/', (req, res) => {
 
 // show first page (list mode)
 router.get('/list', (req, res) => {
-  Restaurant.find()
+  const userId = req.user._id
+  Restaurant.find({ userId })
     .lean()
     .then(restaurant => res.render('list', { restaurant: restaurant }))
     .catch(error => res.render('error', { error: error }))

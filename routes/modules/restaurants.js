@@ -13,6 +13,7 @@ router.get('/restaurant/new', (req, res) => {
 
 // complete add form, data will write to mongodb and redirect to first page 
 router.post('/', (req, res) => {
+  const userId = req.user._id
   let { name, name_en, category, image, location, phone, googleMap, rating, description } = req.body
   return Restaurant.create({
     name: name,
@@ -23,7 +24,8 @@ router.post('/', (req, res) => {
     phone: phone,
     googleMap: googleMap,
     rating: rating,
-    description: description
+    description: description,
+    userId: userId
   })
     .then(() => res.redirect('/'))
     .catch(error => res.render('error', { error: error }))
@@ -31,7 +33,9 @@ router.post('/', (req, res) => {
 
 // show detail page
 router.get('/:id', (req, res) => {
-  return Restaurant.findById(req.params.id)
+  const userId = req.user._id
+  const _id = req.params.id
+  return Restaurant.findOne({ _id, userId })
     .lean()
     .then((restaurant) => res.render('detail', { restaurant: restaurant }))
     .catch(error => res.render('error', { error: error }))
@@ -39,7 +43,9 @@ router.get('/:id', (req, res) => {
 
 // show edit page if you enter through the detail page
 router.get('/:id/edit', (req, res) => {
-  return Restaurant.findById(req.params.id)
+  const userId = req.user._id
+  const _id = req.params.id
+  return Restaurant.findOne({ _id, userId })
     .lean()
     .then((restaurant) => res.render('edit', { restaurant: restaurant }))
     .catch(error => res.render('error', { error: error }))
@@ -47,19 +53,21 @@ router.get('/:id/edit', (req, res) => {
 
 // complete edit page, data will write to mongodb and redirect to detail page
 router.put('/:id', (req, res) => {
-  let restautants = req.body
-  return Restaurant.findById(req.params.id)
+  const userId = req.user._id
+  const _id = req.params.id
+  let restaurants = req.body
+  return Restaurant.findOne({ _id, userId })
     .then(restaurant => {
-      restaurant.name = restautants.name
-      restaurant.name_en = restautants.name_en
-      restaurant.category = restautants.category
-      restaurant.image = restautants.image
-      restaurant.location = restautants.location
-      restaurant.phone = restautants.phone
-      restaurant.googleMap = restaurant.googleMap
-      restaurant.google_map = restautants.googleMap
-      restaurant.rating = restautants.rating
-      restaurant.description = restautants.description
+      restaurant.name = restaurants.name
+      restaurant.name_en = restaurants.name_en
+      restaurant.category = restaurants.category
+      restaurant.image = restaurants.image
+      restaurant.location = restaurants.location
+      restaurant.phone = restaurants.phone
+      restaurant.googleMap = restaurants.googleMap
+      restaurant.google_map = restaurants.googleMap
+      restaurant.rating = restaurants.rating
+      restaurant.description = restaurants.description
       return restaurant.save()
     })
     .then(() => res.redirect(`/restaurant/${req.params.id}`))
@@ -68,7 +76,9 @@ router.put('/:id', (req, res) => {
 
 // click delete icon that will remove data from mongodb and redirect to first page
 router.delete('/:id', (req, res) => {
-  return Restaurant.findById(req.params.id)
+  const userId = req.user._id
+  const _id = req.params.id
+  return Restaurant.findOne({ _id, userId })
     .then(restaurant => restaurant.remove())
     .then(() => res.redirect('/'))
     .catch(error => res.render('error', { error: error }))

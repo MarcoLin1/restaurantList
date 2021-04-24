@@ -15,4 +15,7 @@ router.use('/search', search)
 const sort = require('./modules/sort')
 router.use('/sort', sort)
 
+const users = require('./modules/users')
+router.use('/users', users)
+
 module.exports = router

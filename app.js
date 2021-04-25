@@ -8,6 +8,8 @@ const Restaurant = require('./models/restaurant')
 const methodOverride = require('method-override')
 const routes = require('./routes')
 const usePassport = require('./config/passport')
+const flash = require('connect-flash')
+const { rawListeners } = require('./config/mongoose')
 require('./config/mongoose')
 
 // setting handlebars
@@ -24,11 +26,16 @@ app.use(session({
 // call Passport function and setting before routes
 usePassport(app)
 
-// 依使用者登入狀態
+//
+app.use(flash())
+
+// 依使用者登入狀態設定本地變數
 app.use((req, res, next) => {
   // console.log(req.user)
   res.locals.isAuthenticated = req.isAuthenticated()
   res.locals.user = req.user
+  res.locals.successMessage = req.flash('successMessage')
+  res.locals.warningMessage = req.flash('warningMessage')
   next()
 })
 

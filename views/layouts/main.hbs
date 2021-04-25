@@ -34,9 +34,9 @@
       </a>
       {{!-- add button --}}
       {{#if isAuthenticated}} 
-      <a href="/users/logout" class="btn btn-outline-primary">Logout</a>
+      <a href="/users/logout" class="btn btn-outline-primary logout" style="font-weight: bold;font-size: 20px;border:none;">Logout</a>
       {{else}}
-      <a href="/users/login" class="btn btn-outline-primary">Login</a>
+      <a href="/users/login" class="btn btn-outline-primary login" style="font-weight: bold; font-size: 20px;border:none;">Login</a>
       {{/if}}
 
     </div>
@@ -46,7 +46,7 @@
 
   {{{body}}}
 
-  <div class="card-footer text-center" style="background-color: #ced4da;">
+  <div class="card-footer text-center" style="background-color: #ced4da;border-top:none;">
     Copyright by @Marco
   </div>
 

@@ -14,7 +14,7 @@ router.get('/restaurant/new', (req, res) => {
 // complete add form, data will write to mongodb and redirect to first page 
 router.post('/', (req, res) => {
   const userId = req.user._id
-  let { name, name_en, category, image, location, phone, googleMap, rating, description } = req.body
+  let { name, name_en, category, image, location, phone, google_map, google_iframe, rating, description } = req.body
   return Restaurant.create({
     name: name,
     name_en: name_en,
@@ -22,7 +22,8 @@ router.post('/', (req, res) => {
     image: image,
     location: location,
     phone: phone,
-    googleMap: googleMap,
+    google_map: google_map,
+    google_iframe: google_iframe,
     rating: rating,
     description: description,
     userId: userId
@@ -64,8 +65,8 @@ router.put('/:id', (req, res) => {
       restaurant.image = restaurants.image
       restaurant.location = restaurants.location
       restaurant.phone = restaurants.phone
-      restaurant.googleMap = restaurants.googleMap
-      restaurant.google_map = restaurants.googleMap
+      restaurant.google_iframe = restaurants.google_iframe
+      restaurant.google_map = restaurants.google_map
       restaurant.rating = restaurants.rating
       restaurant.description = restaurants.description
       return restaurant.save()

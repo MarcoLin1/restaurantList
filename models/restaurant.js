@@ -25,7 +25,7 @@ const restaurantSchema = new Schema({
   google_map: {
     type: String
   },
-  googleMap: {
+  google_iframe: {
     type: String
   },
   rating: {

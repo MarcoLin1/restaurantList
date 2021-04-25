@@ -41,9 +41,10 @@ db.once('open', () => {
             name_en: restaurantList[i + (index * 3)].name_en,
             category: restaurantList[i + (index * 3)].category,
             image: restaurantList[i + (index * 3)].image,
+            phone: restaurantList[i + (index * 3)].phone,
             location: restaurantList[i + (index * 3)].location,
             google_map: restaurantList[i + (index * 3)].google_map,
-            googleMap: restaurantList[i + (index * 3)].googleMap,
+            google_iframe: restaurantList[i + (index * 3)].google_iframe,
             rating: restaurantList[i + (index * 3)].rating,
             description: restaurantList[i + (index * 3)].description,
             userId: userId

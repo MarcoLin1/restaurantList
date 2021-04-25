@@ -78,7 +78,7 @@
                 </form>
                 <form action="/restaurant/{{this._id}}?_method=DELETE" method="POST" class="mt-2">
                   <button class="btn btn-sm mr-1 deleteBtn"
-                    style="border-radius: 25%; border:1px solid #f5f5f5; color:#aaaaaa" onclick="removing()"><i
+                    style="border-radius: 25%; border:1px solid #f5f5f5; color:#aaaaaa" onclick="return removing()"><i
                       class="fas fa-trash-alt"></i></button>
                 </form>
               </div>
@@ -94,11 +94,6 @@
 
 <script>
   function removing() {
-    var yes = confirm('Do you want to delete it ?');
-    if (yes) {
-      return true
-    } else {
-      return false
-    }
+    return confirm('Do you want to delete it ?')
   }
 </script>

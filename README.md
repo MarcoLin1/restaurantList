@@ -64,3 +64,12 @@ mongodb connected!
 * Add filter function, such as rating, name and category
 * Add error massage page
 * Add new view mode by list
+
+---
+# Update (2021/4/25)
+* Add register page to sign up an new account
+* Add login page to log in with registered account
+* Add Facebook strategy to log in website
+* Show message to remind user authenticated successfully or not
+* User can only see personal restaurant list 
+* Protect user password via bcrypt
